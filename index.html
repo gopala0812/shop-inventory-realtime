@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shop Inventory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script>
+  if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "login.html";
+  }
+</script>
+
+<h1>🛒 Shop Inventory</h1>
+
+<button class="logout-top" onclick="logout()">Logout</button>
+
+<div class="form-row">
+  <input type="text" id="name" placeholder="Item Name">
+  <input type="number" id="quantity" placeholder="Qty">
+  <input type="text" id="qUnit" placeholder="Unit">
+  <input type="number" id="price" placeholder="Price">
+  <input type="text" id="pUnit" placeholder="₹">
+  <button onclick="addItem()">Add</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="data"></tbody>
+</table>
+
+<!-- EDIT MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h3>Edit Item</h3>
+
+    <input id="editName">
+    <input id="editQty">
+    <input id="editUnit">
+    <input id="editPrice">
+    <input id="editPUnit">
+
+    <button onclick="updateItem()">Update</button>
+    <button onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+const firebaseConfig = { 
+    apiKey: "AIzaSyA4fqtd6FL0_tZ-vFnAeQNEkX0gFeNTlWw",
+  authDomain: "shop-inventory-8c5b0.firebaseapp.com",
+  databaseURL: "https://shop-inventory-8c5b0-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "shop-inventory-8c5b0",
+  storageBucket: "shop-inventory-8c5b0.firebasestorage.app",
+  messagingSenderId: "44136957336",
+  appId: "1:44136957336:web:e8847b8137028e64a397ed"
+ };
+firebase.initializeApp(firebaseConfig);
+window.db = firebase.database();
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+ 
